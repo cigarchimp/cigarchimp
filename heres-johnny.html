@@ -134,23 +134,32 @@
             transition: opacity 0.3s ease-out;
         }
 
-        .arrow {
+        .arrow-container {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            width: 10%; /* Adjust hitbox size */
+            height: 100%; /* Full height for easier clicking */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .arrow-container.left {
+            left: 5%; /* Closer to the image */
+        }
+
+        .arrow-container.right {
+            right: 5%; /* Closer to the image */
+        }
+
+        .arrow {
             font-size: 2rem;
             color: white;
-            cursor: pointer;
             user-select: none;
             transition: opacity 0.3s ease;
-        }
-
-        .arrow.left {
-            left: 10%; /* Bring arrows closer to the image */
-        }
-
-        .arrow.right {
-            right: 10%; /* Bring arrows closer to the image */
         }
 
         footer {
@@ -185,7 +194,7 @@
                 width: 100%; /* Scale images appropriately */
             }
 
-            .arrow {
+            .arrow-container {
                 display: none; /* Hide arrows on mobile */
             }
         }
@@ -223,9 +232,13 @@
 </div>
 
 <div class="lightbox" id="lightbox">
-    <span class="arrow left" id="left-arrow" onclick="prevImage(event)">&#10094;</span>
+    <div class="arrow-container left" onclick="prevImage(event)">
+        <span class="arrow" id="left-arrow">&#10094;</span>
+    </div>
     <img id="lightbox-img" src="">
-    <span class="arrow right" id="right-arrow" onclick="nextImage(event)">&#10095;</span>
+    <div class="arrow-container right" onclick="nextImage(event)">
+        <span class="arrow" id="right-arrow">&#10095;</span>
+    </div>
 </div>
 
 <script>
@@ -311,7 +324,7 @@
     }
 
     document.getElementById('lightbox').addEventListener('click', function(e) {
-        if (e.target.id === 'lightbox' || e.target.tagName === 'IMG') {
+        if (!e.target.closest('.arrow-container')) {
             closeLightbox();
         }
     });
