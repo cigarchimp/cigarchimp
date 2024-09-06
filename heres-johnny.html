@@ -107,15 +107,16 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 90%; /* Make use of the available width */
-            height: calc(100vh - 120px); /* Adjust for nav and footer */
-            margin-top: 70px; /* Space below the nav bar */
+            width: 80vmin; /* Scale down the mosaic size */
+            height: auto;
+            max-width: 80%; /* Prevent overflow on very large screens */
+            margin-top: 80px; /* Space below the nav bar */
             margin-bottom: 50px; /* Space above the footer */
         }
 
         .mosaic-grid img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             object-position: center;
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -196,8 +197,15 @@
         @media (max-width: 1024px) {
             .mosaic-grid {
                 grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
-                height: auto; /* Allow height to adjust naturally on mobile */
-                margin-top: 80px; /* Adjust for mobile */
+                gap: 5px; /* Smaller gap on mobile */
+                width: 90%; /* Adjust width for mobile */
+                margin-top: 80px; /* Space below the nav bar */
+                margin-bottom: 50px; /* Space above the footer */
+            }
+
+            .mosaic-grid img {
+                height: auto; /* Maintain aspect ratio */
+                width: 100%; /* Scale images appropriately */
             }
         }
     </style>
@@ -330,7 +338,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2024 CigarChimp. All rights reserved.</p>
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p> <!-- Corrected text spacing -->
 </footer>
 
 </body>
