@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrouded Beauty Print</title>
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
     <style>
         body, html {
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             height: 100vh;
             background-color: #f3f2f4;
@@ -18,37 +20,78 @@
             overflow: hidden;
         }
 
+        /* Navigation Styles */
         nav {
-            background-color: #333;
-            padding: 10px;
+            background-color: #f3f2f4; /* Match the page background */
+            padding: 10px 20px;
             width: 100%;
             display: flex;
-            justify-content: center;
-            position: absolute;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
             top: 0;
+            z-index: 100;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
+        nav img {
+            height: 60px; /* Increase the logo size by 50% */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
             margin: 0 15px;
-            font-size: 18px;
         }
 
+        nav ul li a {
+            text-decoration: none;
+            color: #444343; /* Updated font color */
+            font-size: 12pt;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            font-weight: bold; /* Only active page is bold */
+        }
+
+        /* Mobile Navigation - Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #444343;
+            margin: 4px;
+            transition: 0.4s;
+        }
+
+        /* Desktop Mosaic Grid */
         .mosaic-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 80vw;
-            height: 80vw;
-            max-width: 700px;
-            max-height: 700px;
+            width: 90%; /* Slightly larger grid */
+            max-height: 80vh; /* Ensure grid doesn't exceed 80% of viewport height */
+            margin: auto; /* Center vertically */
+            margin-top: calc(100px + 10vh); /* Space below the nav bar */
+            margin-bottom: calc(50px + 10vh); /* Space above the footer */
         }
 
         .mosaic-grid img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             object-position: center;
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -89,41 +132,100 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             opacity: 1;
             transition: opacity 0.3s ease-out;
+            position: relative; /* Allow arrows to be positioned relative to the image */
         }
 
-        .arrow {
+        .arrow-container {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 2rem;
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            z-index: 1001;
+            width: 45px; /* Larger hitbox */
+            height: 45px; /* Larger hitbox */
+            padding: 10px; /* Add padding around the arrow for a larger clickable area */
+        }
+
+        .arrow-container.left {
+            left: 425px; /* Adjust position to be closer to the image */
+        }
+
+        .arrow-container.right {
+            right: 425px; /* Adjust position to be closer to the image */
+        }
+
+        .arrow {
+            font-size: 3rem; /* 50% larger arrow */
+            color: white;
             user-select: none;
             transition: opacity 0.3s ease;
+            padding: 15px; /* Increase padding for larger click area */
         }
 
-        .arrow.left {
-            left: 30%;
-        }
-
-        .arrow.right {
-            right: 30%;
+        footer {
+            background-color: #f3f2f4;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 100;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Responsive layout for mobile */
+        @media (max-width: 1024px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
+                gap: 5px; /* Smaller gap on mobile */
+                width: 90%; /* Adjust width for mobile */
+                height: auto; /* Ensure proper scaling */
+                justify-content: center; /* Center the grid horizontally */
+                align-items: center; /* Center the grid vertically */
+                margin-top: 20vh; /* Space from top to center on the screen */
+            }
+
+            .mosaic-grid img {
+                height: auto; /* Maintain aspect ratio */
+                width: 100%; /* Scale images appropriately */
+            }
+
+            .arrow-container {
+                display: none; /* Hide arrows on mobile */
+            }
+        }
     </style>
 </head>
 <body>
 
-<!-- Navigation Menu -->
+<!-- Navigation Bar -->
 <nav>
-    <a href="index.html">Home</a>
-    <a href="prints.html">Prints</a>
-    <a href="https://www.cigarchimp.com/contact">Contact</a>
+    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html">our print process</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </nav>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
 
 <div class="mosaic-grid">
     <img src="https://i.imgur.com/gqYNkfb.jpeg" alt="Shrouded Beauty Print 1" onclick="openLightbox(0)">
@@ -133,9 +235,13 @@
 </div>
 
 <div class="lightbox" id="lightbox">
-    <span class="arrow left" id="left-arrow" onclick="prevImage(event)">&#10094;</span>
+    <div class="arrow-container left" onclick="prevImage(event)">
+        <span class="arrow" id="left-arrow">&#10094;</span>
+    </div>
     <img id="lightbox-img" src="">
-    <span class="arrow right" id="right-arrow" onclick="nextImage(event)">&#10095;</span>
+    <div class="arrow-container right" onclick="nextImage(event)">
+        <span class="arrow" id="right-arrow">&#10095;</span>
+    </div>
 </div>
 
 <script>
@@ -214,18 +320,23 @@
             const endX = event.changedTouches[0].clientX;
             if (startX - endX > 50) { // Swipe left
                 nextImage(event);
-            } else if (endX - startX > 50) { // Swipe right
+            } else if (endX - startX > 50) { // Swipe right */
                 prevImage(event);
             }
         });
     }
 
     document.getElementById('lightbox').addEventListener('click', function(e) {
-        if (e.target.id === 'lightbox' || e.target.tagName === 'IMG') {
+        if (!e.target.closest('.arrow-container')) {
             closeLightbox();
         }
     });
 </script>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p> <!-- Corrected text spacing -->
+</footer>
 
 </body>
 </html>
