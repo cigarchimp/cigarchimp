@@ -8,18 +8,36 @@
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevents scrolling */
+            overflow: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
-            width: 100vw; /* Full viewport width */
+            height: 100vh;
+            width: 100vw;
             box-sizing: border-box;
-            overscroll-behavior: none; /* Disables overscroll bounce effect */
+            overscroll-behavior: none;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
         }
 
         .responsive-image {
-            position: relative; /* Set position relative to use absolute positioning for the link */
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,67 +46,59 @@
         }
 
         .responsive-image img {
-            width: 100%; /* Default to 100% width of container */
-            height: auto; /* Maintain aspect ratio */
-            object-fit: contain; /* Maintains aspect ratio */
-            box-sizing: border-box; /* Includes padding and borders in width and height */
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            box-sizing: border-box;
         }
 
         .clickable-link {
-            position: absolute; /* Position the link over the image */
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%; /* Cover the entire image */
-            height: 100%; /* Cover the entire image */
-            cursor: pointer; /* Show pointer cursor */
-            text-decoration: none; /* Remove any default link styling */
-            z-index: 10; /* Ensure it's above the image */
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
-    <nav style="background-color: #333; padding: 10px; display: flex; justify-content: center;">
-    <a href="index.html" style="color: white; text-decoration: none; margin: 0 15px;">Home</a>
-    <a href="prints.html" style="color: white; text-decoration: none; margin: 0 15px;">Prints</a>
-    <a href="https://www.cigarchimp.com/contact" style="color: white; text-decoration: none; margin: 0 15px;">Contact</a>
+<!-- Navigation Menu -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="prints.html">Prints</a>
+    <a href="https://www.cigarchimp.com/contact">Contact</a>
 </nav>
 
-    <div class="responsive-image">
-        <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
-        <!-- Invisible clickable link over the image -->
-        <a href="https://www.cigarchimp.com/prints" class="clickable-link"></a>
-    </div>
+<div class="responsive-image">
+    <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
+    <a href="prints.html" class="clickable-link"></a> <!-- Link to prints page -->
+</div>
 
-    <script>
-        function adjustImageSize() {
-            const image = document.getElementById('dynamicImage');
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
+<script>
+    function adjustImageSize() {
+        const image = document.getElementById('dynamicImage');
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
 
-            // Adjust image size based on screen size
-            if (screenWidth < 480) { // Very small devices
-                image.style.width = (screenWidth * 1.4) + 'px'; // Adjusted scaling factor to 1.4
-                image.style.height = (screenHeight * 1.4) + 'px';
-            } else if (screenWidth < 768) { // Tablets
-                image.style.width = (screenWidth * 0.85) + 'px'; // Scale to 85% of screen width
-                image.style.height = (screenHeight * 0.85) + 'px'; // Scale to 85% of screen height
-            } else { // Desktop
-                image.style.width = '70vw'; // 70% of viewport width
-                image.style.height = '70vh'; // 70% of viewport height
-            }
+        if (screenWidth < 480) {
+            image.style.width = (screenWidth * 1.4) + 'px';
+            image.style.height = (screenHeight * 1.4) + 'px';
+        } else if (screenWidth < 768) {
+            image.style.width = (screenWidth * 0.85) + 'px';
+            image.style.height = (screenHeight * 0.85) + 'px';
+        } else {
+            image.style.width = '70vw';
+            image.style.height = '70vh';
         }
+    }
 
-        // Initial size adjustment
-        adjustImageSize();
+    adjustImageSize();
+    window.addEventListener('resize', adjustImageSize);
+</script>
 
-        // Adjust size on window resize
-        window.addEventListener('resize', adjustImageSize);
-
-        // Disable rubber band scrolling
-        document.addEventListener('touchmove', function(e) {
-            e.preventDefault(); // Prevents default scrolling behavior
-        }, { passive: false }); // Important to set passive to false for preventing default actions
-    </script>
 </body>
 </html>
