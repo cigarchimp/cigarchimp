@@ -77,40 +77,14 @@
             transition: 0.4s;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none; /* Hide menu on mobile */
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #f3f2f4;
-            }
-
-            nav ul li {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: flex; /* Show hamburger on mobile */
-            }
-
-            nav.active ul {
-                display: flex; /* Show menu when active */
-            }
-        }
-
+        /* Desktop Mosaic Grid */
         .mosaic-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 80vmin; /* Scale down the mosaic size */
-            height: auto;
-            max-width: 80%; /* Prevent overflow on very large screens */
-            margin-top: 80px; /* Space below the nav bar */
+            width: 80%; /* Scale to fit within 80% of the viewport width */
+            max-height: 70vh; /* Ensure grid doesn't exceed 70% of viewport height */
+            margin-top: 100px; /* Space below the nav bar */
             margin-bottom: 50px; /* Space above the footer */
         }
 
@@ -199,9 +173,10 @@
                 grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
                 gap: 5px; /* Smaller gap on mobile */
                 width: 90%; /* Adjust width for mobile */
-                height: 80vh; /* Scale the height to fit better on mobile */
-                justify-content: center; /* Center the grid */
+                height: auto; /* Ensure proper scaling */
+                justify-content: center; /* Center the grid horizontally */
                 align-items: center; /* Center the grid vertically */
+                margin-top: 20vh; /* Space from top to center on the screen */
             }
 
             .mosaic-grid img {
