@@ -40,9 +40,9 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 10px;
-            width: 80vw;
-            height: 80vw;
-            max-width: 700px;
+            width: 80vmin; /* Use viewport min size to ensure it fits within view */
+            height: 80vmin; /* Matches width to maintain aspect ratio */
+            max-width: 700px; /* Ensure it doesn’t get too large on very large screens */
             max-height: 700px;
         }
 
@@ -103,11 +103,11 @@
         }
 
         .arrow.left {
-            left: 30%;
+            left: 15%; /* Push the arrows further out to avoid overlap */
         }
 
         .arrow.right {
-            right: 30%;
+            right: 15%; /* Push the arrows further out to avoid overlap */
         }
 
         @keyframes fadeIn {
@@ -212,9 +212,9 @@
 
         lightbox.addEventListener('touchend', function(event) {
             const endX = event.changedTouches[0].clientX;
-            if (startX - endX > 50) {
+            if (startX - endX > 50) { // Swipe left
                 nextImage(event);
-            } else if (endX - startX > 50) {
+            } else if (endX - startX > 50) { // Swipe right
                 prevImage(event);
             }
         });
