@@ -3,133 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prints</title>
+    <title>Prints - CigarChimp</title>
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f3f2f4;
-            color: #333;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f3f2f4;
+            font-family: Arial, sans-serif;
             overflow: hidden;
         }
 
+        /* Navigation Styles */
         nav {
-            background-color: #333;
-            padding: 10px;
+            background-color: #f3f2f4; /* Match the page background */
+            padding: 10px 20px;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             position: absolute;
             top: 0;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
+        nav img {
+            height: 60px; /* Increase the logo size by 50% */
         }
 
-        .container {
+        nav ul {
+            list-style: none;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            max-width: 1400px;
-            padding: 20px;
-            margin-top: 60px; /* Adjust for nav */
+            margin: 0;
+            padding: 0;
         }
 
-        .print-item {
-            position: relative;
-            max-width: 45%;
-            margin: 0 10px;
+        nav ul li {
+            margin: 0 15px;
         }
 
-        .print-item img.hero {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
+        nav ul li a {
+            text-decoration: none;
+            color: #444343; /* Updated font color */
+            font-size: 12pt;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            text-transform: lowercase;
+            transition: color 0.3s;
         }
 
-        .print-item img.hero:hover {
-            transform: scale(1.05);
+        nav ul li a.active {
+            font-weight: bold; /* Only active page is bold */
         }
 
-        .print-title {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            width: 100%;
-            max-width: 450px;
-            height: auto;
+        /* Mobile Navigation - Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
         }
 
-        .print-item:hover .print-title {
-            opacity: 1;
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #444343;
+            margin: 4px;
+            transition: 0.4s;
         }
 
+        /* Mobile Styles */
         @media (max-width: 768px) {
-            .container {
+            nav ul {
+                display: none; /* Hide menu on mobile */
                 flex-direction: column;
-                height: auto;
-                overflow: auto;
-            }
-
-            .print-item {
-                max-width: 90vw;
-                margin-bottom: 20px;
-                position: relative;
-            }
-
-            .print-title {
-                max-width: 80vw;
-                opacity: 1;
                 position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #f3f2f4;
+            }
+
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger on mobile */
+            }
+
+            nav.active ul {
+                display: flex; /* Show menu when active */
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation Menu -->
+<!-- Navigation Bar -->
 <nav>
-    <a href="index.html">Home</a>
-    <a href="prints.html">Prints</a>
-    <a href="https://www.cigarchimp.com/contact">Contact</a>
+    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html" class="active">prints</a></li> <!-- Active link for this page -->
+        <li><a href="process.html">our print process</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </nav>
 
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
+
+<!-- Your existing content for prints page -->
 <div class="container">
-
-    <div class="print-item">
-        <a href="heres-johnny.html">
-            <img class="hero" src="https://i.imgur.com/V2rSvIP.png" alt="Here's Johnny Print">
-            <img class="print-title" src="https://i.imgur.com/duMVjjM.png" alt="Here's Johnny Title">
-        </a>
-    </div>
-
-    <div class="print-item">
-        <a href="shrouded-beauty.html">
-            <img class="hero" src="https://i.imgur.com/uWwtV2j.png" alt="Shrouded Beauty Print">
-            <img class="print-title" src="https://i.imgur.com/36A8mLn.png" alt="Shrouded Beauty Title">
-        </a>
-    </div>
-
+    <!-- Content here -->
 </div>
 
 </body>
