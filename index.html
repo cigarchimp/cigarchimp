@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickable Image Redirect</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevents scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            box-sizing: border-box;
+            overscroll-behavior: none; /* Disables overscroll bounce effect */
+        }
+
+        .responsive-image {
+            position: relative; /* Set position relative to use absolute positioning for the link */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .responsive-image img {
+            width: 100%; /* Default to 100% width of container */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Maintains aspect ratio */
+            box-sizing: border-box; /* Includes padding and borders in width and height */
+        }
+
+        .clickable-link {
+            position: absolute; /* Position the link over the image */
+            top: 0;
+            left: 0;
+            width: 100%; /* Cover the entire image */
+            height: 100%; /* Cover the entire image */
+            cursor: pointer; /* Show pointer cursor */
+            text-decoration: none; /* Remove any default link styling */
+            z-index: 10; /* Ensure it's above the image */
+        }
+    </style>
+</head>
+<body>
+    <div class="responsive-image">
+        <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
+        <!-- Invisible clickable link over the image -->
+        <a href="https://www.cigarchimp.com/prints" class="clickable-link"></a>
+    </div>
+
+    <script>
+        function adjustImageSize() {
+            const image = document.getElementById('dynamicImage');
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            // Adjust image size based on screen size
+            if (screenWidth < 480) { // Very small devices
+                image.style.width = (screenWidth * 1.4) + 'px'; // Adjusted scaling factor to 1.4
+                image.style.height = (screenHeight * 1.4) + 'px';
+            } else if (screenWidth < 768) { // Tablets
+                image.style.width = (screenWidth * 0.85) + 'px'; // Scale to 85% of screen width
+                image.style.height = (screenHeight * 0.85) + 'px'; // Scale to 85% of screen height
+            } else { // Desktop
+                image.style.width = '70vw'; // 70% of viewport width
+                image.style.height = '70vh'; // 70% of viewport height
+            }
+        }
+
+        // Initial size adjustment
+        adjustImageSize();
+
+        // Adjust size on window resize
+        window.addEventListener('resize', adjustImageSize);
+
+        // Disable rubber band scrolling
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault(); // Prevents default scrolling behavior
+        }, { passive: false }); // Important to set passive to false for preventing default actions
+    </script>
+</body>
+</html>
