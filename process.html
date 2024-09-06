@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Process - CigarChimp</title>
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f2f4;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Hide horizontal overflow */
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #f3f2f4; /* Match the page background */
+            padding: 10px 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a.logo-link {
+            display: flex; /* Ensures the link and image are properly aligned */
+            align-items: center;
+        }
+
+        nav img {
+            height: 60px; /* Increase the logo size by 50% */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444343; /* Updated font color */
+            font-size: 12pt;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            font-weight: bold; /* Only active page is bold */
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px; /* Space for the navbar */
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex: 1 1 300px; /* Responsive sizing */
+        }
+
+        .text-block {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            flex: 1 1 300px; /* Responsive sizing */
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .text-block p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #444343;
+        }
+
+        footer {
+            background-color: #f3f2f4;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <a href="index.html" class="logo-link">
+        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    </a>
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html" class="active">our print process</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
+
+<!-- Main Content -->
+<div class="content">
+    <!-- Print Process Section -->
+    <div class="section">
+        <img src="https://i.imgur.com/ylpmBDR.jpeg" alt="Print Process Image">
+        <div class="text-block">
+            <p>Arches Aquarelle, acid-free, archival quality, 0.53mm 310gsm 100% cotton rag paper. Arches Aquarelle is the only paper mill in France that still uses traditional cylinder mold process to produce its papers. Using archival quality Epson Ultrachrome HDX ink designed to resist fading and provide long-lasting prints. This pigment-based ink delivers rich, deep blacks and smooth gradations while offering exceptional color accuracy.</p>
+        </div>
+    </div>
+
+    <!-- Certificate of Authenticity Section -->
+    <div class="section">
+        <div class="text-block">
+            <p>All of our prints come with their own Certificate of Authenticity, which is signed and numbered by the artist. This certificate guarantees the exclusivity and the quality of your art piece, ensuring that each print is a limited edition and has been crafted with the highest standards of artistry and materials.</p>
+        </div>
+        <img src="https://i.imgur.com/Uawug15.jpeg" alt="Certificate of Authenticity">
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p> <!-- Corrected text spacing -->
+</footer>
+
+</body>
+</html>
