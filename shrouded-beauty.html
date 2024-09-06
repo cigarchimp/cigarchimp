@@ -33,6 +33,11 @@
             z-index: 100;
         }
 
+        nav a.logo-link {
+            display: flex; /* Ensures the link and image are properly aligned */
+            align-items: center;
+        }
+
         nav img {
             height: 60px; /* Increase the logo size by 50% */
         }
@@ -207,8 +212,9 @@
 
 <!-- Navigation Bar -->
 <nav>
-    <a href="index.html"></a>
-    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    <a href="index.html" class="logo-link">
+        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    </a>
     <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="prints.html">prints</a></li>
