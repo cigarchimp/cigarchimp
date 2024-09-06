@@ -171,11 +171,11 @@
         }
 
         .arrow.left {
-            left: 5%; /* Adjust arrows to be wider apart */
+            left: 10%; /* Bring arrows closer to the image */
         }
 
         .arrow.right {
-            right: 5%; /* Adjust arrows to be wider apart */
+            right: 10%; /* Bring arrows closer to the image */
         }
 
         footer {
@@ -199,13 +199,18 @@
                 grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
                 gap: 5px; /* Smaller gap on mobile */
                 width: 90%; /* Adjust width for mobile */
-                margin-top: 80px; /* Space below the nav bar */
-                margin-bottom: 50px; /* Space above the footer */
+                height: 80vh; /* Scale the height to fit better on mobile */
+                justify-content: center; /* Center the grid */
+                align-items: center; /* Center the grid vertically */
             }
 
             .mosaic-grid img {
                 height: auto; /* Maintain aspect ratio */
                 width: 100%; /* Scale images appropriately */
+            }
+
+            .arrow {
+                display: none; /* Hide arrows on mobile */
             }
         }
     </style>
