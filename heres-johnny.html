@@ -12,7 +12,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             height: 100vh;
             background-color: #f3f2f4;
@@ -28,7 +28,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: absolute;
+            position: fixed;
             top: 0;
             z-index: 100;
         }
@@ -105,13 +105,12 @@
 
         .mosaic-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 90vmin; /* Scale to fit within the viewport */
-            height: 90vmin; /* Maintain aspect ratio */
-            max-width: 80%; /* Prevent overflow on very large screens */
-            max-height: calc(100vh - 100px); /* Adjust for navigation height */
+            width: 90%; /* Make use of the available width */
+            height: calc(100vh - 120px); /* Adjust for nav and footer */
+            margin-top: 70px; /* Space below the nav bar */
+            margin-bottom: 50px; /* Space above the footer */
         }
 
         .mosaic-grid img {
@@ -178,9 +177,28 @@
             right: 5%; /* Adjust arrows to be wider apart */
         }
 
+        footer {
+            background-color: #f3f2f4;
+            padding: 10px 20px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            z-index: 100;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        /* Responsive layout for mobile */
+        @media (max-width: 1024px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
+                height: auto; /* Allow height to adjust naturally on mobile */
+                margin-top: 80px; /* Adjust for mobile */
+            }
         }
     </style>
 </head>
@@ -309,6 +327,11 @@
         }
     });
 </script>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 CigarChimp. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
