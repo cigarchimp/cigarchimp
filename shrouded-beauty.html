@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrouded Beauty Print</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #eee;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+            width: 80vw;
+            height: 80vw;
+            max-width: 700px;
+            max-height: 700px;
+        }
+
+        .mosaic-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mosaic-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .arrow.left {
+            left: 30%;
+        }
+
+        .arrow.right {
+            right: 30%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Menu -->
+<nav>
+    <a href="index.html">Home</a>
+    <a href="prints.html">Prints</a>
+    <a href="https://www.cigarchimp.com/contact">Contact</a>
+</nav>
+
+<div class="mosaic-grid">
+    <img src="https://i.imgur.com/gqYNkfb.jpeg" alt="Shrouded Beauty Print 1" onclick="openLightbox(0)">
+    <img src="https://i.imgur.com/gmJjgLg.jpeg" alt="Shrouded Beauty Print 2" onclick="openLightbox(1)">
+    <img src="https://i.imgur.com/QgQreSu.jpeg" alt="Shrouded Beauty Print 3" onclick="openLightbox(2)">
+    <img src="https://i.imgur.com/cw9dtgF.jpeg" alt="Shrouded Beauty Print 4" onclick="openLightbox(3)">
+</div>
+
+<div class="lightbox" id="lightbox">
+    <span class="arrow left" id="left-arrow" onclick="prevImage(event)">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="arrow right" id="right-arrow" onclick="nextImage(event)">&#10095;</span>
+</div>
+
+<script>
+    const images = [
+        "https://i.imgur.com/gqYNkfb.jpeg",
+        "https://i.imgur.com/gmJjgLg.jpeg",
+        "https://i.imgur.com/QgQreSu.jpeg",
+        "https://i.imgur.com/cw9dtgF.jpeg"
+    ];
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        currentIndex = index;
+        lightboxImg.src = images[currentIndex];
+        lightbox.classList.add('active');
+        lightboxImg.style.animation = 'fadeIn 0.3s ease-out';
+        addKeyboardNavigation();
+        addSwipeNavigation();
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        removeKeyboardNavigation();
+    }
+
+    function nextImage(event) {
+        event.stopPropagation();
+        fadeTransition('next');
+    }
+
+    function prevImage(event) {
+        event.stopPropagation();
+        fadeTransition('prev');
+    }
+
+    function fadeTransition(direction) {
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.style.opacity = '0';
+        setTimeout(() => {
+            currentIndex = direction === 'next'
+                ? (currentIndex + 1) % images.length
+                : (currentIndex - 1 + images.length) % images.length;
+            lightboxImg.src = images[currentIndex];
+            lightboxImg.style.opacity = '1';
+        }, 300);
+    }
+
+    function addKeyboardNavigation() {
+        document.addEventListener('keydown', handleKeyNavigation);
+    }
+
+    function removeKeyboardNavigation() {
+        document.removeEventListener('keydown', handleKeyNavigation);
+    }
+
+    function handleKeyNavigation(event) {
+        if (event.key === 'ArrowRight') {
+            nextImage(event);
+        } else if (event.key === 'ArrowLeft') {
+            prevImage(event);
+        }
+    }
+
+    function addSwipeNavigation() {
+        let startX;
+        const lightbox = document.getElementById('lightbox');
+
+        lightbox.addEventListener('touchstart', function(event) {
+            startX = event.touches[0].clientX;
+        });
+
+        lightbox.addEventListener('touchend', function(event) {
+            const endX = event.changedTouches[0].clientX;
+            if (startX - endX > 50) { // Swipe left
+                nextImage(event);
+            } else if (endX - startX > 50) { // Swipe right
+                prevImage(event);
+            }
+        });
+    }
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target.id === 'lightbox' || e.target.tagName === 'IMG') {
+            closeLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>
