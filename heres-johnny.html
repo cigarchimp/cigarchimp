@@ -30,6 +30,7 @@
             align-items: center;
             position: absolute;
             top: 0;
+            z-index: 100;
         }
 
         nav img {
@@ -107,10 +108,10 @@
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 10px;
-            width: 80vmin; /* Use viewport min size to ensure it fits within view */
-            height: 80vmin; /* Matches width to maintain aspect ratio */
-            max-width: calc(100vh - 100px); /* Ensure the mosaic fits within the viewport */
-            max-height: calc(100vh - 100px); /* Adjust to fit with the navigation bar height */
+            width: 90vmin; /* Scale to fit within the viewport */
+            height: 90vmin; /* Maintain aspect ratio */
+            max-width: 80%; /* Prevent overflow on very large screens */
+            max-height: calc(100vh - 100px); /* Adjust for navigation height */
         }
 
         .mosaic-grid img {
@@ -170,11 +171,11 @@
         }
 
         .arrow.left {
-            left: 10%; /* Push the arrows further out to avoid overlap */
+            left: 5%; /* Adjust arrows to be wider apart */
         }
 
         .arrow.right {
-            right: 10%; /* Push the arrows further out to avoid overlap */
+            right: 5%; /* Adjust arrows to be wider apart */
         }
 
         @keyframes fadeIn {
