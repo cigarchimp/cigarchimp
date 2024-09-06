@@ -104,38 +104,68 @@
 
         .container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            margin-top: 70px; /* Adjust to account for nav bar */
-            padding: 20px;
-            max-width: 1200px;
             width: 100%;
+            max-width: 1400px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         .print-item {
-            margin: 20px;
-            text-align: center;
+            position: relative;
+            max-width: 45%;
+            margin: 0 10px;
         }
 
-        .print-item img {
+        .print-item img.hero {
             width: 100%;
-            max-width: 400px;
+            height: auto;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
         }
 
-        .print-item img:hover {
+        .print-item img.hero:hover {
             transform: scale(1.05);
         }
 
-        .print-item a {
-            text-decoration: none;
-            color: #444343;
-            font-size: 14pt;
-            font-weight: bold;
+        .print-title {
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none; /* Prevent pointer events from interfering */
+            width: 100%;
+            max-width: 450px; /* Increased size for larger titles */
+            height: auto;
+        }
+
+        .print-item:hover .print-title {
+            opacity: 1; /* Show title on hover */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+            }
+            .print-item {
+                max-width: 90vw;
+                margin-bottom: 20px;
+                position: relative;
+            }
+            .print-title {
+                max-width: 80vw; /* Adjust title size for mobile */
+                opacity: 1; /* Always show titles on mobile */
+                position: absolute;
+                top: 50%; /* Center vertically */
+                left: 50%; /* Center horizontally */
+                transform: translate(-50%, -50%); /* Proper centering */
+            }
         }
     </style>
 </head>
@@ -167,15 +197,15 @@
 <div class="container">
     <div class="print-item">
         <a href="heres-johnny.html">
-            <img src="https://i.imgur.com/V2rSvIP.png" alt="Here's Johnny Print">
-            <p>Here's Johnny</p>
+            <img class="hero" src="https://i.imgur.com/V2rSvIP.png" alt="Here's Johnny Print">
+            <img class="print-title" src="https://i.imgur.com/duMVjjM.png" alt="Here's Johnny Title">
         </a>
     </div>
 
     <div class="print-item">
         <a href="shrouded-beauty.html">
-            <img src="https://i.imgur.com/uWwtV2j.png" alt="Shrouded Beauty Print">
-            <p>Shrouded Beauty</p>
+            <img class="hero" src="https://i.imgur.com/uWwtV2j.png" alt="Shrouded Beauty Print">
+            <img class="print-title" src="https://i.imgur.com/36A8mLn.png" alt="Shrouded Beauty Title">
         </a>
     </div>
 </div>
