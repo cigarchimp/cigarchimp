@@ -145,14 +145,6 @@
             z-index: 1001;
         }
 
-        .arrow-container.left {
-            left: calc(10px); /* Position arrow 10px from the left of the image */
-        }
-
-        .arrow-container.right {
-            right: calc(10px); /* Position arrow 10px from the right of the image */
-        }
-
         .arrow {
             font-size: 2rem;
             color: white;
@@ -258,6 +250,7 @@
         lightboxImg.style.animation = 'fadeIn 0.3s ease-out';
         addKeyboardNavigation();
         addSwipeNavigation();
+        adjustArrowPosition(); // Adjust arrow positions based on image
     }
 
     function closeLightbox() {
@@ -327,6 +320,17 @@
             closeLightbox();
         }
     });
+
+    function adjustArrowPosition() {
+        const lightboxImg = document.getElementById('lightbox-img');
+        const leftArrow = document.querySelector('.arrow-container.left');
+        const rightArrow = document.querySelector('.arrow-container.right');
+        const imageRect = lightboxImg.getBoundingClientRect();
+
+        // Set the arrow positions to 10px away from the image
+        leftArrow.style.left = `${imageRect.left - 40}px`;  // Adjust the distance from the image edge
+        rightArrow.style.left = `${imageRect.right + 10}px`; // Adjust the distance from the image edge
+    }
 </script>
 
 <!-- Footer -->
