@@ -138,8 +138,8 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 10%; /* Adjust hitbox size */
-            height: 100%; /* Full height for easier clicking */
+            width: auto; /* Adjusted hitbox size */
+            height: 60px; /* Reduced height for better fit */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,11 +148,11 @@
         }
 
         .arrow-container.left {
-            left: calc(50% - 300px); /* Closer to the image */
+            left: 20px; /* Position arrows closer to the image */
         }
 
         .arrow-container.right {
-            right: calc(50% - 300px); /* Closer to the image */
+            right: 20px; /* Position arrows closer to the image */
         }
 
         .arrow {
@@ -160,6 +160,7 @@
             color: white;
             user-select: none;
             transition: opacity 0.3s ease;
+            padding: 10px; /* Add some padding to make the click area larger */
         }
 
         footer {
