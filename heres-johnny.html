@@ -132,6 +132,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             opacity: 1;
             transition: opacity 0.3s ease-out;
+            position: relative; /* Allow arrows to be positioned relative to the image */
         }
 
         .arrow-container {
@@ -143,14 +144,24 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1001;
+            width: 60px; /* Larger hitbox */
+            height: 60px; /* Larger hitbox */
+        }
+
+        .arrow-container.left {
+            left: -60px; /* Moved 10% further out */
+        }
+
+        .arrow-container.right {
+            right: -60px; /* Moved 10% further out */
         }
 
         .arrow {
-            font-size: 2rem;
+            font-size: 3rem; /* 50% larger arrow */
             color: white;
             user-select: none;
             transition: opacity 0.3s ease;
-            padding: 10px; /* Add some padding to make the click area larger */
+            padding: 15px; /* Increase padding for larger click area */
         }
 
         footer {
@@ -250,7 +261,6 @@
         lightboxImg.style.animation = 'fadeIn 0.3s ease-out';
         addKeyboardNavigation();
         addSwipeNavigation();
-        adjustArrowPosition(); // Adjust arrow positions based on image
     }
 
     function closeLightbox() {
@@ -320,17 +330,6 @@
             closeLightbox();
         }
     });
-
-    function adjustArrowPosition() {
-        const lightboxImg = document.getElementById('lightbox-img');
-        const leftArrow = document.querySelector('.arrow-container.left');
-        const rightArrow = document.querySelector('.arrow-container.right');
-        const imageRect = lightboxImg.getBoundingClientRect();
-
-        // Set the arrow positions to 10px away from the image
-        leftArrow.style.left = `${imageRect.left - 40}px`;  // Adjust the distance from the image edge
-        rightArrow.style.left = `${imageRect.right + 10}px`; // Adjust the distance from the image edge
-    }
 </script>
 
 <!-- Footer -->
