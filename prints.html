@@ -101,6 +101,42 @@
                 display: flex; /* Show menu when active */
             }
         }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 70px; /* Adjust to account for nav bar */
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .print-item {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .print-item img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .print-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .print-item a {
+            text-decoration: none;
+            color: #444343;
+            font-size: 14pt;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -127,9 +163,21 @@
     }
 </script>
 
-<!-- Your existing content for prints page -->
+<!-- Content for Prints Page -->
 <div class="container">
-    <!-- Content here -->
+    <div class="print-item">
+        <a href="heres-johnny.html">
+            <img src="https://i.imgur.com/V2rSvIP.png" alt="Here's Johnny Print">
+            <p>Here's Johnny</p>
+        </a>
+    </div>
+
+    <div class="print-item">
+        <a href="shrouded-beauty.html">
+            <img src="https://i.imgur.com/uWwtV2j.png" alt="Shrouded Beauty Print">
+            <p>Shrouded Beauty</p>
+        </a>
+    </div>
 </div>
 
 </body>
