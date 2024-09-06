@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Here's Johnny Print</title>
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
     <style>
         body, html {
             margin: 0;
@@ -18,21 +20,86 @@
             overflow: hidden;
         }
 
+        /* Navigation Styles */
         nav {
-            background-color: #333;
-            padding: 10px;
+            background-color: #f3f2f4; /* Match the page background */
+            padding: 10px 20px;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
             position: absolute;
             top: 0;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
+        nav img {
+            height: 60px; /* Increase the logo size by 50% */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
             margin: 0 15px;
-            font-size: 18px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444343; /* Updated font color */
+            font-size: 12pt;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            font-weight: bold; /* Only active page is bold */
+        }
+
+        /* Mobile Navigation - Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #444343;
+            margin: 4px;
+            transition: 0.4s;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Hide menu on mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #f3f2f4;
+            }
+
+            nav ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger on mobile */
+            }
+
+            nav.active ul {
+                display: flex; /* Show menu when active */
+            }
         }
 
         .mosaic-grid {
@@ -42,8 +109,8 @@
             gap: 10px;
             width: 80vmin; /* Use viewport min size to ensure it fits within view */
             height: 80vmin; /* Matches width to maintain aspect ratio */
-            max-width: 700px; /* Ensure it doesn’t get too large on very large screens */
-            max-height: 700px;
+            max-width: calc(100vh - 100px); /* Ensure the mosaic fits within the viewport */
+            max-height: calc(100vh - 100px); /* Adjust to fit with the navigation bar height */
         }
 
         .mosaic-grid img {
@@ -103,11 +170,11 @@
         }
 
         .arrow.left {
-            left: 15%; /* Push the arrows further out to avoid overlap */
+            left: 10%; /* Push the arrows further out to avoid overlap */
         }
 
         .arrow.right {
-            right: 15%; /* Push the arrows further out to avoid overlap */
+            right: 10%; /* Push the arrows further out to avoid overlap */
         }
 
         @keyframes fadeIn {
@@ -118,12 +185,27 @@
 </head>
 <body>
 
-<!-- Navigation Menu -->
+<!-- Navigation Bar -->
 <nav>
-    <a href="index.html">Home</a>
-    <a href="prints.html">Prints</a>
-    <a href="https://www.cigarchimp.com/contact">Contact</a>
+    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html">our print process</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </nav>
+
+<script>
+    function toggleMenu() {
+        const nav = document.querySelector('nav');
+        nav.classList.toggle('active');
+    }
+</script>
 
 <div class="mosaic-grid">
     <img src="https://i.imgur.com/TjYf5d3.jpeg" alt="Here's Johnny Print 1" onclick="openLightbox(0)">
