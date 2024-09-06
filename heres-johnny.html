@@ -82,8 +82,8 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 80%; /* Scale to fit within 80% of the viewport width */
-            max-height: 70vh; /* Ensure grid doesn't exceed 70% of viewport height */
+            width: 85%; /* Slightly larger grid */
+            max-height: 75vh; /* Ensure grid doesn't exceed 75% of viewport height */
             margin-top: 100px; /* Space below the nav bar */
             margin-bottom: 50px; /* Space above the footer */
         }
@@ -218,7 +218,7 @@
     <img src="https://i.imgur.com/TjYf5d3.jpeg" alt="Here's Johnny Print 1" onclick="openLightbox(0)">
     <img src="https://i.imgur.com/g0MgMP7.jpeg" alt="Here's Johnny Print 2" onclick="openLightbox(1)">
     <img src="https://i.imgur.com/u0CPjDO.jpeg" alt="Here's Johnny Print 3" onclick="openLightbox(2)">
-    <img src="https://i.imgur.com/nq8j5qV.jpeg" alt="Here's Johnny Print 4" onclick="openLightbox(3)">
+    <img src="https://i.imgur.com/sTzjB54.jpeg" alt="Here's Johnny Print 4" onclick="openLightbox(3)"> <!-- Replaced image -->
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -232,7 +232,7 @@
         "https://i.imgur.com/TjYf5d3.jpeg",
         "https://i.imgur.com/g0MgMP7.jpeg",
         "https://i.imgur.com/u0CPjDO.jpeg",
-        "https://i.imgur.com/nq8j5qV.jpeg"
+        "https://i.imgur.com/sTzjB54.jpeg" // Updated image link
     ];
     let currentIndex = 0;
 
@@ -303,7 +303,7 @@
             const endX = event.changedTouches[0].clientX;
             if (startX - endX > 50) { // Swipe left
                 nextImage(event);
-            } else if (endX - startX > 50) { // Swipe right
+            } else if (endX - startX > 50) { // Swipe right */
                 prevImage(event);
             }
         });
