@@ -82,10 +82,11 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
             gap: 10px;
-            width: 85%; /* Slightly larger grid */
-            max-height: 75vh; /* Ensure grid doesn't exceed 75% of viewport height */
-            margin-top: 100px; /* Space below the nav bar */
-            margin-bottom: 50px; /* Space above the footer */
+            width: 90%; /* Slightly larger grid */
+            max-height: 80vh; /* Ensure grid doesn't exceed 80% of viewport height */
+            margin: auto; /* Center vertically */
+            margin-top: calc(100px + 10vh); /* Space below the nav bar */
+            margin-bottom: calc(50px + 10vh); /* Space above the footer */
         }
 
         .mosaic-grid img {
