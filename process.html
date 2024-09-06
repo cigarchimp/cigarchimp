@@ -47,6 +47,7 @@
 
         nav img {
             height: 60px;
+            cursor: pointer;
         }
 
         nav ul {
@@ -76,41 +77,50 @@
 
         /* Content Styles */
         .content {
-            padding-top: 100px; /* To avoid overlap with the navbar */
+            padding-top: 120px; /* To avoid overlap with the navbar */
             width: 90%;
             max-width: 1200px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 60px;
         }
 
         .section {
             display: flex;
-            align-items: flex-start;
-            gap: 20px;
+            align-items: center;
+            gap: 40px;
+            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
         }
 
         .section img {
-            max-width: 45%;
-            max-height: 300px;
-            object-fit: contain;
+            flex: 1;
+            max-height: 400px;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .section.text-left img {
-            order: 2;
+        .section.text-left {
+            flex-direction: row-reverse;
         }
 
         .text-box {
-            max-width: 55%;
+            flex: 1;
             font-size: 14pt;
-            line-height: 1.6;
+            line-height: 1.8;
+            text-align: justify;
+            padding: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #222;
         }
 
         footer {
             background-color: #f3f2f4;
-            padding: 10px 20px;
+            padding: 20px;
             width: 100%;
             text-align: center;
             position: fixed;
@@ -122,11 +132,11 @@
         @media (max-width: 768px) {
             .section {
                 flex-direction: column;
-                align-items: center;
             }
 
             .section img {
-                max-width: 80%;
+                max-width: 100%;
+                max-height: 300px;
             }
 
             .text-box {
@@ -170,22 +180,24 @@
         <div class="section">
             <img src="https://i.imgur.com/ylpmBDR.jpeg" alt="Arches Aquarelle Paper">
             <div class="text-box">
-                Arches Aquarelle, acid-free, archival quality, 0.53mm 310gsm 100% cotton rag paper. Arches Aquarelle is
-                the only paper mill in France that still uses traditional cylinder mold process to produce its papers.
-                Using archival quality Epson Ultrachrome HDX ink designed to resist fading and provide long-lasting
-                prints. This pigment-based ink delivers rich, deep blacks and smooth gradations while offering
-                exceptional color accuracy.
+                <p><span class="highlight">Arches Aquarelle</span>, acid-free, archival quality, 0.53mm 310gsm 100% cotton rag
+                    paper. Arches Aquarelle is the only paper mill in France that still uses the traditional cylinder
+                    mold process to produce its papers.</p>
+                <p>Using archival quality <span class="highlight">Epson Ultrachrome HDX ink</span> designed to resist
+                    fading and provide long-lasting prints. This pigment-based ink delivers rich, deep blacks and smooth
+                    gradations while offering exceptional color accuracy.</p>
             </div>
         </div>
 
         <!-- Second Section -->
         <div class="section text-left">
-            <div class="text-box">
-                Each print comes with a Certificate of Authenticity that is signed and numbered, ensuring the unique
-                identity and limited nature of your artwork. This certificate confirms that your print is an original
-                fine art piece created with the highest standards of quality and craftsmanship.
-            </div>
             <img src="https://i.imgur.com/Uawug15.jpeg" alt="Certificate of Authenticity">
+            <div class="text-box">
+                <p>Each print comes with a <span class="highlight">Certificate of Authenticity</span> that is signed and
+                    numbered, ensuring the unique identity and limited nature of your artwork. This certificate confirms
+                    that your print is an original fine art piece created with the highest standards of quality and
+                    craftsmanship.</p>
+            </div>
         </div>
 
     </div>
