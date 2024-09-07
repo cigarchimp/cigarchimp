@@ -175,6 +175,18 @@
                 transform: translate(-50%, -50%); /* Proper centering */
             }
         }
+
+        /* Footer Styling */
+        footer {
+            background-color: #f3f2f4;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            z-index: 100;
+            border-top: none;
+        }
     </style>
 </head>
 <body>
@@ -188,7 +200,6 @@
         <li><a href="index.html">home</a></li>
         <li><a href="prints.html" class="active">prints</a></li> <!-- Active link for this page -->
         <li><a href="process.html">our process</a></li>
-        <!-- "Here's Johnny" and "Shrouded Beauty" are intentionally not listed -->
     </ul>
     <div class="hamburger" onclick="toggleMenu()">
         <div></div>
@@ -220,6 +231,11 @@
         </a>
     </div>
 </div>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
