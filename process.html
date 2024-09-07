@@ -26,6 +26,7 @@
             background-color: #f3f2f4;
             font-family: 'SF Pro Display', 'Roboto', sans-serif;
             color: #444343;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
         /* Navigation Styles */
@@ -178,6 +179,13 @@
             border-top: none;
         }
 
+        .divider {
+            width: 80%;
+            height: 1px;
+            background-color: #ccc;
+            margin: 20px 0;
+        }
+
         /* Responsive layout for mobile */
         @media (max-width: 768px) {
             .section {
@@ -194,6 +202,8 @@
                 max-width: 100%;
                 text-align: center;
                 margin: 10px 0; /* Closer to the associated image */
+                padding: 0 20px; /* Adds some padding to prevent overflow */
+                word-break: break-word; /* Ensures long words or URLs do not overflow */
             }
 
             .title {
@@ -247,6 +257,9 @@
                     gradations while offering exceptional color accuracy.</p>
             </div>
         </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
 
         <!-- Second Section -->
         <div class="section text-left">
