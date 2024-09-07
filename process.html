@@ -45,7 +45,7 @@
         nav a.logo {
             display: flex;
             align-items: center;
-            padding-left: 2%; /* Adds space on the left side */
+            padding-left: 2%;
         }
 
         nav img {
@@ -84,8 +84,8 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            margin-right: 15px; /* Adjust margin as needed */
-            padding: 5px; /* Adjust padding around the hamburger icon */
+            margin-right: 15px;
+            padding: 5px;
         }
 
         .hamburger div {
@@ -96,10 +96,65 @@
             transition: 0.4s;
         }
 
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0; /* Hide the middle bar */
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden; /* Initially hidden */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999; /* Above all other content */
+        }
+
+        .overlay ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .overlay ul li {
+            margin: 20px 0; /* Space between menu items */
+        }
+
+        .overlay ul li a {
+            text-decoration: none;
+            color: white; /* White text for better visibility */
+            font-size: 20pt; /* Larger text size */
+            font-family: 'Roboto', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .overlay.active {
+            visibility: visible; /* Show when active */
+            opacity: 1;
+        }
+
         /* Mobile Menu */
         @media (max-width: 768px) {
             nav ul {
                 display: none;
+            }
+
+            nav ul.active {
+                display: flex;
                 flex-direction: column;
                 position: absolute;
                 top: 60px;
@@ -107,10 +162,7 @@
                 background-color: #f3f2f4;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 border-radius: 8px;
-            }
-
-            nav ul.active {
-                display: flex;
+                padding: 20px;
             }
 
             .hamburger {
@@ -135,7 +187,7 @@
             align-items: center;
             gap: 20px;
             padding: 20px 0;
-            flex-wrap: wrap; /* Ensures that items wrap properly on smaller screens */
+            flex-wrap: wrap;
         }
 
         .section img {
@@ -144,7 +196,7 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            width: 100%; /* Ensures image fits the container */
+            width: 100%;
         }
 
         .section.text-left {
@@ -157,9 +209,9 @@
             line-height: 1.6;
             text-align: justify;
             padding: 10px;
-            word-wrap: break-word; /* Prevents text from overflowing */
-            width: 100%; /* Ensures text-box fills the container width */
-            box-sizing: border-box; /* Ensures padding is included in width */
+            word-wrap: break-word;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .highlight {
@@ -171,10 +223,10 @@
             text-align: center;
             font-size: 1.5em;
             margin-bottom: 10px;
-            white-space: nowrap; /* Prevents wrapping */
+            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* Adds an ellipsis if text is too long */
-            font-weight: bold; /* Makes the text bold */
+            text-overflow: ellipsis;
+            font-weight: bold;
         }
 
         footer {
@@ -198,34 +250,34 @@
         /* Responsive layout for mobile */
         @media (max-width: 768px) {
             .section {
-                flex-direction: column; /* Stacks items vertically on mobile */
-                align-items: center; /* Center align items */
-                text-align: center; /* Center align text by default */
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
 
             .section.text-left {
-                flex-direction: column; /* Override to stack vertically on mobile */
-                text-align: left; /* Left-align text in this section */
+                flex-direction: column;
+                text-align: left;
             }
 
             .section img {
                 max-width: 100%;
                 max-height: 300px;
-                margin-bottom: 10px; /* Adds some space below the image */
+                margin-bottom: 10px;
             }
 
             .text-box {
                 max-width: 100%;
-                text-align: left; /* Left-align text for readability */
-                margin: 10px 0; /* Maintain margin to keep the text and image separate */
-                padding: 10px 15px; /* Adds padding for a better appearance */
-                word-break: break-word; /* Prevents long words from breaking the layout */
-                white-space: normal; /* Ensure normal text wrapping */
-                box-sizing: border-box; /* Ensures padding does not affect width */
+                text-align: left;
+                margin: 10px 0;
+                padding: 10px 15px;
+                word-break: break-word;
+                white-space: normal;
+                box-sizing: border-box;
             }
 
             .title {
-                font-size: 4.5vw; /* Dynamically scales title on mobile */
+                font-size: 4.5vw;
             }
         }
     </style>
@@ -250,11 +302,29 @@
         </div>
     </nav>
 
+    <!-- Overlay for full-page navigation -->
+    <div class="overlay" id="overlay">
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="prints.html">prints</a></li>
+            <li><a href="process.html" class="active">our process</a></li>
+        </ul>
+    </div>
+
     <script>
         function toggleMenu() {
-            const navMenu = document.querySelector('nav ul');
-            navMenu.classList.toggle('active');
+            const nav = document.querySelector('.hamburger');
+            const overlay = document.getElementById('overlay');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
+
+        // Close the menu when clicking outside the menu items
+        document.getElementById('overlay').addEventListener('click', function(e) {
+            if (e.target === this) { // If clicked directly on the overlay, not a link
+                toggleMenu();
+            }
+        });
     </script>
 
     <!-- Main Content -->
