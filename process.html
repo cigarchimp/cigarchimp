@@ -124,14 +124,15 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px;
+            gap: 40px;
         }
 
         .section {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 20px;
             padding: 20px 0;
+            flex-wrap: wrap; /* Ensures that items wrap properly on smaller screens */
         }
 
         .section img {
@@ -140,6 +141,7 @@
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 100%; /* Ensures image fits the container */
         }
 
         .section.text-left {
@@ -149,9 +151,12 @@
         .text-box {
             flex: 1;
             font-size: 14pt;
-            line-height: 1.8;
+            line-height: 1.6;
             text-align: justify;
             padding: 10px;
+            word-wrap: break-word; /* Prevents text from overflowing */
+            width: 100%; /* Ensures text-box fills the container width */
+            box-sizing: border-box; /* Ensures padding is included in width */
         }
 
         .highlight {
@@ -202,8 +207,8 @@
                 max-width: 100%;
                 text-align: center;
                 margin: 10px 0; /* Closer to the associated image */
-                padding: 0 20px; /* Adds some padding to prevent overflow */
-                word-break: break-word; /* Ensures long words or URLs do not overflow */
+                padding: 10px 15px; /* Adds padding to prevent overflow and enhance readability */
+                word-break: break-word; /* Breaks long words to fit into container */
             }
 
             .title {
