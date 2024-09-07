@@ -198,21 +198,30 @@
         /* Responsive layout for mobile */
         @media (max-width: 768px) {
             .section {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: column; /* Stacks items vertically on mobile */
+                align-items: center; /* Center align items */
+                text-align: center; /* Center align text by default */
+            }
+
+            .section.text-left {
+                flex-direction: column; /* Override to stack vertically on mobile */
+                text-align: left; /* Left-align text in this section */
             }
 
             .section img {
                 max-width: 100%;
                 max-height: 300px;
+                margin-bottom: 10px; /* Adds some space below the image */
             }
 
             .text-box {
                 max-width: 100%;
-                text-align: center;
-                margin: 10px 0; /* Closer to the associated image */
-                padding: 10px 15px; /* Adds padding to prevent overflow and enhance readability */
-                word-break: break-word; /* Breaks long words to fit into container */
+                text-align: left; /* Left-align text for readability */
+                margin: 10px 0; /* Maintain margin to keep the text and image separate */
+                padding: 10px 15px; /* Adds padding for a better appearance */
+                word-break: break-word; /* Prevents long words from breaking the layout */
+                white-space: normal; /* Ensure normal text wrapping */
+                box-sizing: border-box; /* Ensures padding does not affect width */
             }
 
             .title {
