@@ -22,23 +22,114 @@
             background-color: #f3f2f4;
         }
 
+        /* Navigation Styles from process.html */
+        nav {
+            background-color: #f3f2f4;
+            padding: 10px 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a.logo {
+            display: flex;
+            align-items: center;
+            padding-left: 2%; /* Ensures logo stays on the left */
+            margin: 0; /* Explicitly set to avoid centering */
+        }
+
+        nav img {
+            height: 60px;
+            cursor: pointer;
+            padding: 5px; /* Adds padding around the logo */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0 40px 0 10px; /* Consistent padding from process.html */
+            justify-content: flex-end; /* Aligns nav items to the right */
+            flex: 1;
+        }
+
+        nav ul li {
+            margin: 0 15px; /* Consistent spacing between menu items */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #444343;
+            font-size: 12pt;
+            font-family: 'Roboto', sans-serif;
+            font-weight: normal;
+            text-transform: lowercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            font-weight: bold;
+        }
+
+        .hamburger {
+            display: none; /* Hidden on desktop, shown on mobile */
+            flex-direction: column;
+            cursor: pointer;
+            margin-right: 15px; /* Padding for mobile hamburger icon */
+            padding: 5px; /* Consistent padding around hamburger */
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #444343;
+            margin: 4px;
+            transition: 0.4s;
+        }
+
+        /* Mobile Menu from process.html */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #f3f2f4;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            nav ul.active {
+                display: flex; /* Show menu on hamburger click */
+            }
+
+            .hamburger {
+                display: flex; /* Show hamburger on mobile */
+            }
+        }
+
         .responsive-image {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: auto; /* Ensure aspect ratio is maintained */
+            width: auto;
             height: auto;
-            max-width: 100%; /* Limit width to container */
-            max-height: 80vh; /* Limit height to viewport */
+            max-width: 100%;
+            max-height: 80vh;
         }
 
         .responsive-image img {
-            width: auto; /* Auto width to maintain proportions */
-            height: auto; /* Auto height to maintain proportions */
-            max-width: 100%; /* Constrain image within viewport */
-            max-height: 80vh; /* Constrain image height */
-            object-fit: contain; /* Maintain aspect ratio */
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
             box-sizing: border-box;
         }
 
@@ -56,30 +147,25 @@
 </head>
 <body>
 
-<!-- Placeholder for the header -->
-<div id="header"></div>
+<!-- Directly insert the header here -->
+<nav>
+    <a href="index.html" class="logo">
+        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    </a>
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html" class="active">our process</a></li>
+    
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
 
 <script>
-    // Fetch and insert the header HTML content
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('header.html') // Ensure this path is correct relative to your index.html
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch header: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Remove footer for the home page
-                const headerWithFooter = document.createElement('div');
-                headerWithFooter.innerHTML = data;
-                headerWithFooter.querySelector('footer')?.remove(); // Remove footer if it exists
-                document.getElementById('header').appendChild(headerWithFooter);
-            })
-            .catch(error => console.error('Error loading header:', error)); // Log any errors to console
-    });
-
-    // Toggle menu function for the hamburger menu
     function toggleMenu() {
         const navMenu = document.querySelector('nav ul');
         navMenu.classList.toggle('active');
