@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shrouded Beauty Print</title>
-    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body, html {
             margin: 0;
@@ -14,15 +14,14 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #f3f2f4;
             font-family: Arial, sans-serif;
-            overflow: hidden;
         }
 
         /* Navigation Styles */
         nav {
-            background-color: #f3f2f4; /* Match the page background */
+            background-color: #f3f2f4;
             padding: 10px 20px;
             width: 100%;
             display: flex;
@@ -33,20 +32,24 @@
             z-index: 100;
         }
 
-        nav a.logo-link {
-            display: flex; /* Ensures the link and image are properly aligned */
+        nav a.logo {
+            display: flex;
             align-items: center;
+            padding-left: 2%;
         }
 
         nav img {
-            height: 60px; /* Increase the logo size by 50% */
+            height: 60px;
+            cursor: pointer;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             margin: 0;
-            padding: 0;
+            padding: 0 40px 0 10px;
+            justify-content: flex-end;
+            flex: 1;
         }
 
         nav ul li {
@@ -55,7 +58,7 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #444343; /* Updated font color */
+            color: #444343;
             font-size: 12pt;
             font-family: 'Roboto', sans-serif;
             font-weight: normal;
@@ -64,14 +67,15 @@
         }
 
         nav ul li a.active {
-            font-weight: bold; /* Only active page is bold */
+            font-weight: bold;
         }
 
-        /* Mobile Navigation - Hamburger Menu */
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            margin-right: 15px;
+            padding: 5px;
         }
 
         .hamburger div {
@@ -82,16 +86,67 @@
             transition: 0.4s;
         }
 
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0; /* Hide the middle bar */
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden; /* Initially hidden */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999; /* Above all other content */
+        }
+
+        .overlay ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .overlay ul li {
+            margin: 20px 0; /* Space between menu items */
+        }
+
+        .overlay ul li a {
+            text-decoration: none;
+            color: white; /* White text for better visibility */
+            font-size: 20pt; /* Larger text size */
+            font-family: 'Roboto', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .overlay.active {
+            visibility: visible; /* Show when active */
+            opacity: 1;
+        }
+
         /* Desktop Mosaic Grid */
         .mosaic-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 images side by side on desktop */
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            width: 90%; /* Slightly larger grid */
-            max-height: 80vh; /* Ensure grid doesn't exceed 80% of viewport height */
-            margin: auto; /* Center vertically */
-            margin-top: calc(100px + 10vh); /* Space below the nav bar */
-            margin-bottom: calc(50px + 10vh); /* Space above the footer */
+            width: 90%;
+            max-height: 80vh;
+            margin: auto;
+            margin-top: calc(100px + 10vh);
+            margin-bottom: calc(50px + 10vh);
         }
 
         .mosaic-grid img {
@@ -135,9 +190,7 @@
             max-height: 90%;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            opacity: 1;
             transition: opacity 0.3s ease-out;
-            position: relative; /* Allow arrows to be positioned relative to the image */
         }
 
         .arrow-container {
@@ -149,35 +202,25 @@
             justify-content: center;
             cursor: pointer;
             z-index: 1001;
-            width: 45px; /* Larger hitbox */
-            height: 45px; /* Larger hitbox */
-            padding: 10px; /* Add padding around the arrow for a larger clickable area */
+            width: 45px;
+            height: 45px;
+            padding: 10px;
         }
 
         .arrow-container.left {
-            left: 425px; /* Adjust position to be closer to the image */
+            left: 425px;
         }
 
         .arrow-container.right {
-            right: 425px; /* Adjust position to be closer to the image */
+            right: 425px;
         }
 
         .arrow {
-            font-size: 3rem; /* 50% larger arrow */
+            font-size: 3rem;
             color: white;
             user-select: none;
             transition: opacity 0.3s ease;
-            padding: 15px; /* Increase padding for larger click area */
-        }
-
-        footer {
-            background-color: #f3f2f4;
-            padding: 10px 20px;
-            width: 100%;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            z-index: 100;
+            padding: 15px;
         }
 
         @keyframes fadeIn {
@@ -188,23 +231,55 @@
         /* Responsive layout for mobile */
         @media (max-width: 1024px) {
             .mosaic-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2x2 grid on mobile */
-                gap: 5px; /* Smaller gap on mobile */
-                width: 90%; /* Adjust width for mobile */
-                height: auto; /* Ensure proper scaling */
-                justify-content: center; /* Center the grid horizontally */
-                align-items: center; /* Center the grid vertically */
-                margin-top: 20vh; /* Space from top to center on the screen */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+                width: 90%;
+                height: auto;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20vh;
             }
 
             .mosaic-grid img {
-                height: auto; /* Maintain aspect ratio */
-                width: 100%; /* Scale images appropriately */
+                height: auto;
+                width: 100%;
             }
 
             .arrow-container {
-                display: none; /* Hide arrows on mobile */
+                display: none;
             }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: #f3f2f4;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 20px;
+            }
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #f3f2f4;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            z-index: 100;
+            border-top: none;
         }
     </style>
 </head>
@@ -212,13 +287,13 @@
 
 <!-- Navigation Bar -->
 <nav>
-    <a href="index.html" class="logo-link">
+    <a href="index.html" class="logo">
         <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
     </a>
     <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="prints.html">prints</a></li>
-        <li><a href="process.html">our print process</a></li>
+        <li><a href="process.html">our process</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()">
         <div></div>
@@ -227,11 +302,29 @@
     </div>
 </nav>
 
+<!-- Overlay for the full-page navigation -->
+<div class="overlay" id="overlay">
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html">our process</a></li>
+    </ul>
+</div>
+
 <script>
     function toggleMenu() {
-        const nav = document.querySelector('nav');
+        const nav = document.querySelector('.hamburger');
+        const overlay = document.getElementById('overlay');
         nav.classList.toggle('active');
+        overlay.classList.toggle('active');
     }
+
+    // Close the menu when clicking outside the menu items
+    document.getElementById('overlay').addEventListener('click', function(e) {
+        if (e.target === this) { // If clicked directly on the overlay, not a link
+            toggleMenu();
+        }
+    });
 </script>
 
 <div class="mosaic-grid">
@@ -327,7 +420,7 @@
             const endX = event.changedTouches[0].clientX;
             if (startX - endX > 50) { // Swipe left
                 nextImage(event);
-            } else if (endX - startX > 50) { // Swipe right */
+            } else if (endX - startX > 50) { // Swipe right
                 prevImage(event);
             }
         });
@@ -342,7 +435,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p> <!-- Corrected text spacing -->
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p>
 </footer>
 
 </body>
