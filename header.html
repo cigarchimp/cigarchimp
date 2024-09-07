@@ -1,0 +1,124 @@
+<!-- header.html -->
+<nav>
+    <a href="index.html" class="logo">
+        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    </a>
+    <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="prints.html">prints</a></li>
+        <li><a href="process.html" class="active">our process</a></li>
+        <li><a href="heres-johnny.html">here's johnny</a></li>
+        <li><a href="shrouded-beauty.html">shrouded beauty</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</nav>
+
+<!-- Add styles for consistent padding -->
+<style>
+    /* Navigation Styles */
+    nav {
+        background-color: #f3f2f4;
+        padding: 10px 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav a.logo {
+        display: flex;
+        align-items: center;
+        padding-left: 2%; /* Adjusts padding to space the logo properly */
+    }
+
+    nav img {
+        height: 60px;
+        cursor: pointer;
+        padding: 5px; /* Add padding around the logo if needed */
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0 40px 0 10px; /* Adds padding to position the menu correctly */
+        justify-content: flex-end; /* Keeps items aligned to the right */
+        flex: 1;
+    }
+
+    nav ul li {
+        margin: 0 15px; /* Spacing between menu items */
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: #444343;
+        font-size: 12pt;
+        font-family: 'Roboto', sans-serif;
+        font-weight: normal;
+        text-transform: lowercase;
+        transition: color 0.3s;
+    }
+
+    nav ul li a.active {
+        font-weight: bold;
+    }
+
+    .hamburger {
+        display: none; /* This will be displayed on mobile view */
+        flex-direction: column;
+        cursor: pointer;
+        margin-right: 15px; /* Adjust margin to position the hamburger menu */
+        padding: 5px; /* Padding for hamburger menu icon */
+    }
+
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #444343;
+        margin: 4px;
+        transition: 0.4s;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+        nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #f3f2f4;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        nav ul.active {
+            display: flex;
+        }
+
+        .hamburger {
+            display: flex; /* Show hamburger on mobile */
+        }
+    }
+</style>
+
+<script>
+    // Toggle menu function for the hamburger menu
+    function toggleMenu() {
+        const navMenu = document.querySelector('nav ul');
+        navMenu.classList.toggle('active');
+    }
+</script>
+
+<!-- Footer included here if the page is not the home page -->
+<footer>
+    <p>&copy; 2024 Cigar Chimp. All rights reserved.</p>
+</footer>
