@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - CigarChimp</title>
-    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png"> <!-- Favicon setup -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Roboto Font -->
+    <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -22,7 +24,7 @@
             background-color: #f3f2f4;
         }
 
-        /* Navigation Styles from process.html */
+        /* Navigation Styles */
         nav {
             background-color: #f3f2f4;
             padding: 10px 20px;
@@ -38,27 +40,27 @@
         nav a.logo {
             display: flex;
             align-items: center;
-            padding-left: 2%; /* Ensures logo stays on the left */
-            margin: 0; /* Explicitly set to avoid centering */
+            padding-left: 2%;
+            margin: 0;
         }
 
         nav img {
             height: 60px;
             cursor: pointer;
-            padding: 5px; /* Adds padding around the logo */
+            padding: 5px;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             margin: 0;
-            padding: 0 40px 0 10px; /* Consistent padding from process.html */
-            justify-content: flex-end; /* Aligns nav items to the right */
+            padding: 0 40px 0 10px;
+            justify-content: flex-end;
             flex: 1;
         }
 
         nav ul li {
-            margin: 0 15px; /* Consistent spacing between menu items */
+            margin: 0 15px;
         }
 
         nav ul li a {
@@ -76,11 +78,11 @@
         }
 
         .hamburger {
-            display: none; /* Hidden on desktop, shown on mobile */
+            display: none;
             flex-direction: column;
             cursor: pointer;
-            margin-right: 15px; /* Padding for mobile hamburger icon */
-            padding: 5px; /* Consistent padding around hamburger */
+            margin-right: 15px;
+            padding: 5px;
         }
 
         .hamburger div {
@@ -91,25 +93,65 @@
             transition: 0.4s;
         }
 
-        /* Mobile Menu from process.html */
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+
+        .overlay ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .overlay ul li {
+            margin: 20px 0;
+        }
+
+        .overlay ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 20pt;
+            font-family: 'Roboto', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Mobile Styles */
         @media (max-width: 768px) {
             nav ul {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background-color: #f3f2f4;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                border-radius: 8px;
-            }
-
-            nav ul.active {
-                display: flex; /* Show menu on hamburger click */
             }
 
             .hamburger {
-                display: flex; /* Show hamburger on mobile */
+                display: flex;
             }
         }
 
@@ -145,59 +187,79 @@
         }
     </style>
 </head>
+
 <body>
 
-<!-- Directly insert the header here -->
-<nav>
-    <a href="index.html" class="logo">
-        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
-    </a>
-    <ul>
-        <li><a href="index.html">home</a></li>
-        <li><a href="prints.html">prints</a></li>
-        <li><a href="process.html" class="active">our process</a></li>
-    
-    </ul>
-    <div class="hamburger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+        </a>
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="prints.html">prints</a></li>
+            <li><a href="process.html" class="active">our process</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Overlay for full-page navigation -->
+    <div class="overlay" id="overlay">
+        <ul>
+            <li><a href="index.html">home</a></li>
+            <li><a href="prints.html">prints</a></li>
+            <li><a href="process.html" class="active">our process</a></li>
+        </ul>
     </div>
-</nav>
 
-<script>
-    function toggleMenu() {
-        const navMenu = document.querySelector('nav ul');
-        navMenu.classList.toggle('active');
-    }
-</script>
-
-<div class="responsive-image">
-    <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
-    <a href="prints.html" class="clickable-link"></a>
-</div>
-
-<script>
-    function adjustImageSize() {
-        const image = document.getElementById('dynamicImage');
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-
-        if (screenWidth < 480) {
-            image.style.width = (screenWidth * 1.4) + 'px';
-            image.style.height = (screenHeight * 1.4) + 'px';
-        } else if (screenWidth < 768) {
-            image.style.width = (screenWidth * 0.85) + 'px';
-            image.style.height = (screenHeight * 0.85) + 'px';
-        } else {
-            image.style.width = '70vw';
-            image.style.height = '70vh';
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.hamburger');
+            const overlay = document.getElementById('overlay');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
         }
-    }
 
-    adjustImageSize();
-    window.addEventListener('resize', adjustImageSize);
-</script>
+        // Close the menu when clicking outside the menu items
+        document.getElementById('overlay').addEventListener('click', function (e) {
+            if (e.target === this) {
+                toggleMenu();
+            }
+        });
+    </script>
+
+    <!-- Content Section -->
+    <div class="responsive-image">
+        <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
+        <a href="prints.html" class="clickable-link"></a>
+    </div>
+
+    <script>
+        function adjustImageSize() {
+            const image = document.getElementById('dynamicImage');
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+
+            if (screenWidth < 480) {
+                image.style.width = (screenWidth * 1.4) + 'px';
+                image.style.height = (screenHeight * 1.4) + 'px';
+            } else if (screenWidth < 768) {
+                image.style.width = (screenWidth * 0.85) + 'px';
+                image.style.height = (screenHeight * 0.85) + 'px';
+            } else {
+                image.style.width = '70vw';
+                image.style.height = '70vh';
+            }
+        }
+
+        adjustImageSize();
+        window.addEventListener('resize', adjustImageSize);
+    </script>
 
 </body>
+
 </html>
