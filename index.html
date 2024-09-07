@@ -62,8 +62,13 @@
 <script>
     // Fetch and insert the header HTML content
     document.addEventListener("DOMContentLoaded", function () {
-        fetch('header.html')
-            .then(response => response.text())
+        fetch('header.html') // Ensure this path is correct relative to your index.html
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch header: ' + response.status);
+                }
+                return response.text();
+            })
             .then(data => {
                 // Remove footer for the home page
                 const headerWithFooter = document.createElement('div');
@@ -71,7 +76,7 @@
                 headerWithFooter.querySelector('footer')?.remove(); // Remove footer if it exists
                 document.getElementById('header').appendChild(headerWithFooter);
             })
-            .catch(error => console.error('Error loading header:', error));
+            .catch(error => console.error('Error loading header:', error)); // Log any errors to console
     });
 
     // Toggle menu function for the hamburger menu
