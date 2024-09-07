@@ -22,88 +22,6 @@
             background-color: #f3f2f4;
         }
 
-        /* Navigation Styles */
-        nav {
-            background-color: #f3f2f4; /* Match the page background */
-            padding: 10px 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            top: 0;
-        }
-
-        nav img {
-            height: 60px; /* Increase the logo size by 50% */
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #444343; /* Updated font color */
-            font-size: 12pt;
-            font-family: 'Roboto', sans-serif;
-            font-weight: normal;
-            text-transform: lowercase;
-            transition: color 0.3s;
-        }
-
-        nav ul li a.active {
-            font-weight: bold; /* Only active page is bold */
-        }
-
-        /* Mobile Navigation - Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: #444343;
-            margin: 4px;
-            transition: 0.4s;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none; /* Hide menu on mobile */
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background-color: #f3f2f4;
-            }
-
-            nav ul li {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: flex; /* Show hamburger on mobile */
-            }
-
-            nav.active ul {
-                display: flex; /* Show menu when active */
-            }
-        }
-
         .responsive-image {
             position: relative;
             display: flex;
@@ -138,25 +56,28 @@
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<nav>
-    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
-    <ul>
-        <li><a href="index.html" class="active">home</a></li>
-        <li><a href="prints.html">prints</a></li>
-        <li><a href="process.html">our print process</a></li>
-    </ul>
-    <div class="hamburger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</nav>
+<!-- Placeholder for the header -->
+<div id="header"></div>
 
 <script>
+    // Fetch and insert the header HTML content
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                // Remove footer for the home page
+                const headerWithFooter = document.createElement('div');
+                headerWithFooter.innerHTML = data;
+                headerWithFooter.querySelector('footer')?.remove(); // Remove footer if it exists
+                document.getElementById('header').appendChild(headerWithFooter);
+            })
+            .catch(error => console.error('Error loading header:', error));
+    });
+
+    // Toggle menu function for the hamburger menu
     function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('active');
+        const navMenu = document.querySelector('nav ul');
+        navMenu.classList.toggle('active');
     }
 </script>
 
