@@ -40,11 +40,6 @@
             z-index: 100;
         }
 
-        nav a.logo {
-            display: flex;
-            align-items: center;
-        }
-
         nav img {
             height: 60px;
             cursor: pointer;
@@ -55,6 +50,7 @@
             display: flex;
             margin: 0;
             padding: 0;
+            margin-left: auto; /* Aligns the navigation items to the right */
         }
 
         nav ul li {
@@ -157,7 +153,7 @@
         <ul>
             <li><a href="index.html">home</a></li>
             <li><a href="prints.html">prints</a></li>
-            <li><a href="process.html" class="active">our print process</a></li>
+            <li><a href="process.html" class="active">our process</a></li> <!-- Updated from "our print process" to "our process" -->
         </ul>
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
