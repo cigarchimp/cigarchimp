@@ -21,6 +21,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
             min-height: 100vh;
             background-color: #f3f2f4;
             font-family: 'SF Pro Display', 'Roboto', sans-serif;
@@ -78,11 +79,12 @@
         /* Content Styles */
         .content {
             flex: 1;
-            padding-top: 120px;
+            padding-top: 120px; /* To avoid overlap with the navbar */
             width: 90%;
             max-width: 1200px;
             display: flex;
             flex-direction: column;
+            align-items: center; /* Center content on desktop */
             gap: 60px;
         }
 
@@ -91,7 +93,6 @@
             align-items: center;
             gap: 40px;
             padding: 20px 0;
-            border-bottom: 1px solid #ddd;
         }
 
         .section img {
@@ -121,12 +122,13 @@
 
         footer {
             background-color: #f3f2f4;
-            padding: 10px 20px;
+            padding: 10px;
             width: 100%;
             text-align: center;
-            position: relative;
+            position: sticky;
+            bottom: 0;
             z-index: 100;
-            font-size: 12pt; /* Maintain the font size */
+            border-top: none; /* Remove the line above the footer */
         }
 
         /* Responsive layout for mobile */
@@ -134,11 +136,6 @@
             .section {
                 flex-direction: column;
                 text-align: center;
-                gap: 20px;
-            }
-
-            .section.text-left {
-                flex-direction: column; /* Ensure proper stacking on mobile */
             }
 
             .section img {
@@ -148,15 +145,7 @@
 
             .text-box {
                 max-width: 100%;
-            }
-
-            .content > .section:first-child .text-box::before {
-                content: "Your artwork is printed using the following:";
-                display: block;
-                font-size: 16pt;
-                margin-bottom: 10px;
-                font-weight: bold;
-                color: #222;
+                text-align: center;
             }
         }
     </style>
@@ -190,6 +179,11 @@
 
     <!-- Main Content -->
     <div class="content">
+
+        <!-- Title Section -->
+        <div class="section">
+            <h2 style="text-align: center; width: 100%;">Your artwork is printed using the following:</h2>
+        </div>
 
         <!-- First Section -->
         <div class="section">
