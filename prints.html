@@ -32,15 +32,24 @@
             top: 0;
         }
 
+        nav a.logo {
+            display: flex;
+            align-items: center;
+            padding-left: 2%; /* Adds space on the left side */
+        }
+
         nav img {
-            height: 60px; /* Increase the logo size by 50% */
+            height: 60px; /* Adjust logo size */
+            cursor: pointer;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             margin: 0;
-            padding: 0;
+            padding: 0 40px 0 10px;
+            justify-content: flex-end; /* Aligns nav items to the right */
+            flex: 1;
         }
 
         nav ul li {
@@ -66,6 +75,8 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            margin-right: 15px; /* Padding for mobile hamburger icon */
+            padding: 5px; /* Adds padding around the hamburger icon */
         }
 
         .hamburger div {
@@ -86,19 +97,16 @@
                 left: 0;
                 width: 100%;
                 background-color: #f3f2f4;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
             }
 
-            nav ul li {
-                text-align: center;
-                margin: 10px 0;
+            nav ul.active {
+                display: flex; /* Show menu when active */
             }
 
             .hamburger {
                 display: flex; /* Show hamburger on mobile */
-            }
-
-            nav.active ul {
-                display: flex; /* Show menu when active */
             }
         }
 
@@ -173,11 +181,14 @@
 
 <!-- Navigation Bar -->
 <nav>
-    <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    <a href="index.html" class="logo">
+        <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
+    </a>
     <ul>
         <li><a href="index.html">home</a></li>
         <li><a href="prints.html" class="active">prints</a></li> <!-- Active link for this page -->
-        <li><a href="process.html">our print process</a></li>
+        <li><a href="process.html">our process</a></li>
+        <!-- "Here's Johnny" and "Shrouded Beauty" are intentionally not listed -->
     </ul>
     <div class="hamburger" onclick="toggleMenu()">
         <div></div>
@@ -188,8 +199,8 @@
 
 <script>
     function toggleMenu() {
-        const nav = document.querySelector('nav');
-        nav.classList.toggle('active');
+        const navMenu = document.querySelector('nav ul');
+        navMenu.classList.toggle('active');
     }
 </script>
 
