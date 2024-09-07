@@ -10,7 +10,7 @@
     <style>
         @font-face {
             font-family: 'SF Pro Display';
-            src: url('path-to-your-font-file/SFProDisplay-Regular.otf') format('opentype'); /* Replace with your font file location */
+            src: url('path-to-your-font-file/SFProDisplay-Regular.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
@@ -21,7 +21,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            min-height: 100vh;
             background-color: #f3f2f4;
             font-family: 'SF Pro Display', 'Roboto', sans-serif;
             color: #444343;
@@ -40,6 +40,11 @@
             z-index: 100;
         }
 
+        nav a.logo {
+            display: flex;
+            align-items: center;
+        }
+
         nav img {
             height: 60px;
             cursor: pointer;
@@ -50,7 +55,6 @@
             display: flex;
             margin: 0;
             padding: 0;
-            margin-left: auto; /* Aligns the navigation items to the right */
         }
 
         nav ul li {
@@ -73,7 +77,8 @@
 
         /* Content Styles */
         .content {
-            padding-top: 120px; /* To avoid overlap with the navbar */
+            flex: 1;
+            padding-top: 120px;
             width: 90%;
             max-width: 1200px;
             display: flex;
@@ -116,18 +121,24 @@
 
         footer {
             background-color: #f3f2f4;
-            padding: 20px;
+            padding: 10px 20px;
             width: 100%;
             text-align: center;
-            position: fixed;
-            bottom: 0;
+            position: relative;
             z-index: 100;
+            font-size: 12pt; /* Maintain the font size */
         }
 
         /* Responsive layout for mobile */
         @media (max-width: 768px) {
             .section {
                 flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .section.text-left {
+                flex-direction: column; /* Ensure proper stacking on mobile */
             }
 
             .section img {
@@ -137,7 +148,15 @@
 
             .text-box {
                 max-width: 100%;
-                text-align: center;
+            }
+
+            .content > .section:first-child .text-box::before {
+                content: "Your artwork is printed using the following:";
+                display: block;
+                font-size: 16pt;
+                margin-bottom: 10px;
+                font-weight: bold;
+                color: #222;
             }
         }
     </style>
@@ -153,7 +172,7 @@
         <ul>
             <li><a href="index.html">home</a></li>
             <li><a href="prints.html">prints</a></li>
-            <li><a href="process.html" class="active">our process</a></li> <!-- Updated from "our print process" to "our process" -->
+            <li><a href="process.html" class="active">our process</a></li>
         </ul>
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
