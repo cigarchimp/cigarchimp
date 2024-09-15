@@ -144,24 +144,6 @@
             opacity: 1;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            /* Adjust image size on mobile */
-            .responsive-image img {
-                width: 110%; /* Increase width on mobile */
-                height: 110%; /* Increase height on mobile */
-                object-fit: cover; /* Ensure the image covers the area */
-            }
-        }
-
         .responsive-image {
             position: relative;
             display: flex;
@@ -180,6 +162,35 @@
             max-height: 80vh;
             object-fit: contain;
             box-sizing: border-box;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            /* Adjust image size on mobile */
+            .responsive-image img {
+                width: 110%; /* Increase width on mobile */
+                height: 110%; /* Increase height on mobile */
+                object-fit: cover; /* Ensure the image covers the area */
+            }
+        }
+
+        /* Desktop Reset Styles */
+        @media (min-width: 769px) {
+            .responsive-image img {
+                width: auto; /* Reset width for desktop */
+                height: auto; /* Reset height for desktop */
+                max-width: 100%; /* Keep max-width constraint */
+                max-height: 80vh; /* Keep max-height constraint */
+                object-fit: contain; /* Reset to original object-fit */
+            }
         }
 
         .clickable-link {
@@ -260,29 +271,6 @@
         <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
         <a href="prints.html" class="clickable-link"></a>
     </div>
-
-    <script>
-        // Disable the JavaScript that adjusts the image size
-        // function adjustImageSize() {
-        //     const image = document.getElementById('dynamicImage');
-        //     const screenWidth = window.innerWidth;
-        //     const screenHeight = window.innerHeight;
-
-        //     if (screenWidth < 480) {
-        //         image.style.width = (screenWidth * 1.4) + 'px';
-        //         image.style.height = (screenHeight * 1.4) + 'px';
-        //     } else if (screenWidth < 768) {
-        //         image.style.width = (screenWidth * 0.85) + 'px';
-        //         image.style.height = (screenHeight * 0.85) + 'px';
-        //     } else {
-        //         image.style.width = '70vw';
-        //         image.style.height = '70vh';
-        //     }
-        // }
-
-        // adjustImageSize();
-        // window.addEventListener('resize', adjustImageSize);
-    </script>
 
 </body>
 
