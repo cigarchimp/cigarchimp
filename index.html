@@ -156,9 +156,9 @@
 
             /* Adjust image size on mobile */
             .responsive-image img {
-                max-width: 110%;
-                max-height: 110%; /* Increase height on mobile */
-                object-fit: cover;
+                width: 110%; /* Increase width on mobile */
+                height: 110%; /* Increase height on mobile */
+                object-fit: cover; /* Ensure the image covers the area */
             }
         }
 
@@ -262,25 +262,26 @@
     </div>
 
     <script>
-        function adjustImageSize() {
-            const image = document.getElementById('dynamicImage');
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
+        // Disable the JavaScript that adjusts the image size
+        // function adjustImageSize() {
+        //     const image = document.getElementById('dynamicImage');
+        //     const screenWidth = window.innerWidth;
+        //     const screenHeight = window.innerHeight;
 
-            if (screenWidth < 480) {
-                image.style.width = (screenWidth * 1.4) + 'px';
-                image.style.height = (screenHeight * 1.4) + 'px';
-            } else if (screenWidth < 768) {
-                image.style.width = (screenWidth * 0.85) + 'px';
-                image.style.height = (screenHeight * 0.85) + 'px';
-            } else {
-                image.style.width = '70vw';
-                image.style.height = '70vh';
-            }
-        }
+        //     if (screenWidth < 480) {
+        //         image.style.width = (screenWidth * 1.4) + 'px';
+        //         image.style.height = (screenHeight * 1.4) + 'px';
+        //     } else if (screenWidth < 768) {
+        //         image.style.width = (screenWidth * 0.85) + 'px';
+        //         image.style.height = (screenHeight * 0.85) + 'px';
+        //     } else {
+        //         image.style.width = '70vw';
+        //         image.style.height = '70vh';
+        //     }
+        // }
 
-        adjustImageSize();
-        window.addEventListener('resize', adjustImageSize);
+        // adjustImageSize();
+        // window.addEventListener('resize', adjustImageSize);
     </script>
 
 </body>
