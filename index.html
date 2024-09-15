@@ -182,14 +182,13 @@
             }
         }
 
-        /* Desktop Reset Styles */
+        /* Desktop Styles */
         @media (min-width: 769px) {
             .responsive-image img {
-                width: auto; /* Reset width for desktop */
-                height: auto; /* Reset height for desktop */
-                max-width: 100%; /* Keep max-width constraint */
-                max-height: 80vh; /* Keep max-height constraint */
-                object-fit: contain; /* Reset to original object-fit */
+                width: 60%; /* Reduce width for desktop */
+                height: auto; /* Maintain aspect ratio */
+                max-height: 60vh; /* Limit the height */
+                object-fit: contain; /* Keep the image contained within set dimensions */
             }
         }
 
