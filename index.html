@@ -73,7 +73,7 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #444343;
+            color: #444343; /* Default color */
             font-size: 20px; /* Set font size to 20px */
             font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
             font-weight: normal;
@@ -83,12 +83,13 @@
             padding: 0 8.5px; /* Apply padding */
             -webkit-font-smoothing: antialiased; /* Improve font rendering */
             -moz-osx-font-smoothing: grayscale;
-            transition: color 0.3s;
+            transition: color 0.3s, font-weight 0.3s; /* Smooth transition for color and font-weight */
         }
 
         nav ul li a.active {
             font-weight: bold;
-        }
+            color: #888888; /* Lighter gray color for active link */
+                    }
 
         .hamburger {
             display: none;
