@@ -8,6 +8,13 @@
     <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'SteelTongs';
+            src: url('fonts/SteelTongs.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body,
         html {
             margin: 0;
@@ -66,10 +73,14 @@
         nav ul li a {
             text-decoration: none;
             color: #444343;
-            font-size: 12pt;
-            font-family: 'Roboto', sans-serif;
+            font-size: 12pt; /* Adjust font size as needed */
+            font-family: 'SteelTongs', sans-serif;
             font-weight: normal;
-            text-transform: lowercase;
+            text-transform: uppercase; /* Ensure text is displayed in uppercase */
+            letter-spacing: 0.05em; /* Adjust kerning */
+            line-height: 1.2; /* Adjust line height */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale;
             transition: color 0.3s;
         }
 
@@ -134,8 +145,13 @@
         .overlay ul li a {
             text-decoration: none;
             color: white;
-            font-size: 20pt;
-            font-family: 'Roboto', sans-serif;
+            font-size: 20pt; /* Adjust font size as needed */
+            font-family: 'SteelTongs', sans-serif;
+            text-transform: uppercase; /* Ensure text is displayed in uppercase */
+            letter-spacing: 0.05em; /* Adjust kerning */
+            line-height: 1.2; /* Adjust line height */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale;
             transition: color 0.3s ease;
         }
 
