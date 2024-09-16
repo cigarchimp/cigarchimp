@@ -28,7 +28,7 @@
         /* Navigation Styles */
         nav {
             background-color: #f3f2f4;
-            padding: 10px 32.5px; /* Adjusted padding */
+            padding: 10px 32.5px;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -46,15 +46,14 @@
         }
 
         nav img {
-            height: 60px; /* Default height for mobile */
+            height: 60px;
             cursor: pointer;
             padding: 5px;
         }
 
-        /* Desktop Styles */
         @media (min-width: 769px) {
             nav img {
-                height: 80px; /* Larger size for desktop */
+                height: 80px;
             }
         }
 
@@ -73,23 +72,19 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #444343; /* Default color */
-            font-size: 20px; /* Set font size to 20px */
-            font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
-            font-weight: normal;
-            text-transform: uppercase; /* Ensure text is displayed in uppercase */
-            letter-spacing: 0.05em; /* Adjust kerning */
-            line-height: 1.2; /* Adjust line height */
-            padding: 0 8.5px; /* Apply padding */
-            -webkit-font-smoothing: antialiased; /* Improve font rendering */
-            -moz-osx-font-smoothing: grayscale;
-            transition: color 0.3s, font-weight 0.3s; /* Smooth transition for color and font-weight */
+            color: #444343;
+            font-size: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            padding: 0 8.5px;
+            transition: color 0.3s;
         }
 
         nav ul li a.active {
-            font-weight:normal;
-            color: #888888; /* Lighter gray color for active link */
-                    }
+            color: #888888;
+        }
 
         .hamburger {
             display: none;
@@ -148,14 +143,12 @@
         .overlay ul li a {
             text-decoration: none;
             color: white;
-            font-size: 20px; /* Set font size to 20px */
-            font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
-            text-transform: uppercase; /* Ensure text is displayed in uppercase */
-            letter-spacing: 0.05em; /* Adjust kerning */
-            line-height: 1.2; /* Adjust line height */
-            padding: 8.5px; /* Apply padding */
-            -webkit-font-smoothing: antialiased; /* Improve font rendering */
-            -moz-osx-font-smoothing: grayscale;
+            font-size: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            padding: 8.5px;
             transition: color 0.3s ease;
         }
 
@@ -176,21 +169,21 @@
         }
 
         .responsive-image img {
+            position: relative;
             width: auto;
             height: auto;
             max-width: 100%;
             max-height: 80vh;
             object-fit: contain;
             box-sizing: border-box;
-            transition: transform 0.3s ease; /* Add smooth transition */
+            transition: transform 0.3s ease;
+            z-index: 1;
         }
 
-        /* Scale and move the image slightly on hover */
         .responsive-image img:hover {
-            transform: scale(1.05); /* Grow slightly larger on hover */
+            transform: scale(1.05);
         }
 
-        /* Mobile Styles */
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -200,21 +193,19 @@
                 display: flex;
             }
 
-            /* Adjust image size on mobile */
             .responsive-image img {
-                width: 110%; /* Increase width on mobile */
-                height: 110%; /* Increase height on mobile */
-                object-fit: cover; /* Ensure the image covers the area */
+                width: 110%;
+                height: 110%;
+                object-fit: cover;
             }
         }
 
-        /* Desktop Styles */
         @media (min-width: 769px) {
             .responsive-image img {
-                width: 80%; /* Reduce width for desktop */
-                height: auto; /* Maintain aspect ratio */
-                max-height: 70vh; /* Limit the height */
-                object-fit: contain; /* Keep the image contained within set dimensions */
+                width: 80%;
+                height: auto;
+                max-height: 70vh;
+                object-fit: contain;
             }
         }
 
@@ -226,7 +217,8 @@
             height: 100%;
             cursor: pointer;
             text-decoration: none;
-            z-index: 10;
+            z-index: 0;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -239,7 +231,7 @@
             <img src="https://i.imgur.com/Xvw0EHr.png" alt="CigarChimp Logo">
         </a>
         <ul>
-            <li><a href="index.html">home</a></li>
+            <li><a href="index.html" class="active">home</a></li>
             <li><a href="prints.html">prints</a></li>
             <li><a href="process.html">our process</a></li>
         </ul>
@@ -267,17 +259,15 @@
             overlay.classList.toggle('active');
         }
 
-        // Close the menu when clicking outside the menu items
         document.getElementById('overlay').addEventListener('click', function (e) {
             if (e.target === this) {
                 toggleMenu();
             }
         });
 
-        // Function to set the active class based on the current page
         function setActiveNavLink() {
             const navLinks = document.querySelectorAll('nav ul li a');
-            const currentPage = window.location.pathname.split('/').pop(); // Gets the current file name
+            const currentPage = window.location.pathname.split('/').pop();
 
             navLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
@@ -289,23 +279,6 @@
         }
 
         setActiveNavLink();
-
-        // Add a parallax effect on mouse movement over the image
-        const image = document.getElementById('dynamicImage');
-
-        image.addEventListener('mousemove', (e) => {
-            const rect = image.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) - 0.5; // Normalize value from -0.5 to 0.5
-            const y = ((e.clientY - rect.top) / rect.height) - 0.5; // Normalize value from -0.5 to 0.5
-            const moveX = x * 10; // Adjust the 10 to control how much it moves horizontally
-            const moveY = y * 10; // Adjust the 10 to control how much it moves vertically
-            image.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
-        });
-
-        // Reset the transform when the mouse leaves the image
-        image.addEventListener('mouseleave', () => {
-            image.style.transform = 'scale(1)'; // Reset to original scale
-        });
     </script>
 
     <!-- Content Section -->
