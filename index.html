@@ -184,7 +184,7 @@
             transition: transform 0.3s ease; /* Add smooth transition */
         }
 
-        /* Scale the image slightly on hover */
+        /* Scale and move the image slightly on hover */
         .responsive-image img:hover {
             transform: scale(1.05); /* Grow slightly larger on hover */
         }
@@ -288,6 +288,23 @@
         }
 
         setActiveNavLink();
+
+        // Add a parallax effect on mouse movement over the image
+        const image = document.getElementById('dynamicImage');
+
+        image.addEventListener('mousemove', (e) => {
+            const rect = image.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) - 0.5; // Normalize value from -0.5 to 0.5
+            const y = ((e.clientY - rect.top) / rect.height) - 0.5; // Normalize value from -0.5 to 0.5
+            const moveX = x * 10; // Adjust the 10 to control how much it moves horizontally
+            const moveY = y * 10; // Adjust the 10 to control how much it moves vertically
+            image.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // Reset the transform when the mouse leaves the image
+        image.addEventListener('mouseleave', () => {
+            image.style.transform = 'scale(1)'; // Reset to original scale
+        });
     </script>
 
     <!-- Content Section -->
