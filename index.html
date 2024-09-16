@@ -46,9 +46,16 @@
         }
 
         nav img {
-            height: 80px;
+            height: 60px; /* Default height for mobile */
             cursor: pointer;
             padding: 5px;
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 769px) {
+            nav img {
+                height: 80px; /* Larger size for desktop */
+            }
         }
 
         nav ul {
@@ -174,6 +181,12 @@
             max-height: 80vh;
             object-fit: contain;
             box-sizing: border-box;
+            transition: transform 0.3s ease; /* Add smooth transition */
+        }
+
+        /* Scale the image slightly on hover */
+        .responsive-image img:hover {
+            transform: scale(1.05); /* Grow slightly larger on hover */
         }
 
         /* Mobile Styles */
