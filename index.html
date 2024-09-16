@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - CigarChimp</title>
     <link rel="icon" href="https://i.imgur.com/Xvw0EHr.png" type="image/png">
-    <!-- Link to Bebas Neue Font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Load SFProDisplay-Bold font from GitHub -->
     <style>
+        @font-face {
+            font-family: 'SFProDisplay';
+            src: url('fonts/SFProDisplay-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
         body,
         html {
             margin: 0;
@@ -68,11 +74,11 @@
             text-decoration: none;
             color: #444343;
             font-size: 16pt; /* Adjust font size as needed */
-            font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
-            font-weight: normal;
+            font-family: 'SFProDisplay', sans-serif; /* Use SFProDisplay font */
+            font-weight: bold; /* Apply bold weight */
             text-transform: uppercase; /* Ensure text is displayed in uppercase */
             letter-spacing: 0.05em; /* Adjust kerning */
-            line-height: 1.0; /* Adjust line height */
+            line-height: 1.2; /* Adjust line height */
             -webkit-font-smoothing: antialiased; /* Improve font rendering */
             -moz-osx-font-smoothing: grayscale;
             transition: color 0.3s;
@@ -139,11 +145,11 @@
         .overlay ul li a {
             text-decoration: none;
             color: white;
-            font-size: 16pt; /* Adjust font size as needed */
-            font-family: 'Bebas Neue', sans-serif; /* Use Bebas Neue font */
+            font-size: 24pt; /* Adjust font size as needed */
+            font-family: 'SFProDisplay', sans-serif; /* Use SFProDisplay font */
             text-transform: uppercase; /* Ensure text is displayed in uppercase */
             letter-spacing: 0.05em; /* Adjust kerning */
-            line-height: 1.0; /* Adjust line height */
+            line-height: 1.2; /* Adjust line height */
             -webkit-font-smoothing: antialiased; /* Improve font rendering */
             -moz-osx-font-smoothing: grayscale;
             transition: color 0.3s ease;
