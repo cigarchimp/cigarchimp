@@ -72,8 +72,8 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #444343;
-            font-size: 20px;
+            color: #6e6e6e;
+            font-size: 21.5px;
             font-family: 'Bebas Neue', sans-serif;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -82,8 +82,12 @@
             transition: color 0.3s;
         }
 
+        nav ul li a:hover {
+            color: #14b6cf;
+        }
+
         nav ul li a.active {
-            color: #888888;
+            color: #000000;
         }
 
         .hamburger {
@@ -162,26 +166,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: auto;
+            width: 80%; /* Set width to ensure visibility */
             height: auto;
-            max-width: 100%;
             max-height: 80vh;
+            margin-top: 100px; /* Add margin to avoid overlap with nav */
+        }
+
+        .responsive-image a {
+            display: block;
+            width: 65%; /* Adjust width to narrow the clickable area */
+            margin: 0 auto; /* Center the link */
+            text-align: center; /* Center the content inside the link */
+            text-decoration: none;
         }
 
         .responsive-image img {
-            position: relative;
-            width: auto;
+            width: 100%;
             height: auto;
-            max-width: 100%;
-            max-height: 80vh;
             object-fit: contain;
-            box-sizing: border-box;
             transition: transform 0.3s ease;
-            z-index: 1;
         }
 
-        .responsive-image img:hover {
-            transform: scale(1.05);
+        .responsive-image a:hover img {
+            transform: scale(1.03);
         }
 
         @media (max-width: 768px) {
@@ -193,32 +200,24 @@
                 display: flex;
             }
 
+            .responsive-image {
+                width: 100%; /* Full width on mobile */
+            }
+
             .responsive-image img {
-                width: 110%;
-                height: 110%;
+                width: 100%;
+                height: auto;
                 object-fit: cover;
             }
         }
 
         @media (min-width: 769px) {
             .responsive-image img {
-                width: 80%;
+                width: 100%;
                 height: auto;
                 max-height: 70vh;
                 object-fit: contain;
             }
-        }
-
-        .clickable-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            text-decoration: none;
-            z-index: 0;
-            pointer-events: none;
         }
     </style>
 </head>
@@ -283,8 +282,9 @@
 
     <!-- Content Section -->
     <div class="responsive-image">
-        <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
-        <a href="prints.html" class="clickable-link"></a>
+        <a href="prints.html">
+            <img id="dynamicImage" src="https://i.imgur.com/E9nZ5hV.png" alt="Header Image">
+        </a>
     </div>
 
 </body>
